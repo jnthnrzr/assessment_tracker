@@ -4,6 +4,9 @@ from django.db import models
 class Assessment(models.Model):
     title = models.CharField(max_length=140)
 
+    def __str__(self):
+        return self.title
+
 
 class Question(models.Model):
     text = models.CharField(max_length=140)
@@ -11,6 +14,9 @@ class Question(models.Model):
                                    related_name='questions',
                                    on_delete=models.CASCADE,
                                    null=False)
+
+    def __str__(self):
+        return self.text
 
 
 class Choice(models.Model):
@@ -20,3 +26,6 @@ class Choice(models.Model):
                                  on_delete=models.CASCADE,
                                  null=False)
     correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.text
