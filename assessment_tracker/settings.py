@@ -40,7 +40,13 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
+    'knox',
+    'accounts.apps.AccountsConfig'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,8 +63,7 @@ ROOT_URLCONF = 'assessment_tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
