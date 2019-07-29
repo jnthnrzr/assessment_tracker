@@ -17,7 +17,7 @@ class Question(models.Model):
                                    null=False)
 
     def __str__(self):
-        return f'{self.assessment}: {self.text}'
+        return f'[{self.assessment}] {self.text}'
 
 
 class Choice(models.Model):
@@ -29,7 +29,7 @@ class Choice(models.Model):
     correct = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.text
+        return f'{self.question} : {self.text}'
 
 
 class UserAssessment(models.Model):
@@ -40,4 +40,4 @@ class UserAssessment(models.Model):
     score = models.IntegerField(default=0, null=True,)
 
     def __str__(self):
-        return f'{self.user.username}: {self.assessment} Score {self.score}'
+        return f'[{self.user.username}] {self.assessment}: Score {self.score}'
