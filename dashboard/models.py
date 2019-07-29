@@ -16,7 +16,7 @@ class Question(models.Model):
                                    null=False)
 
     def __str__(self):
-        return self.text
+        return f'{self.assessment}: {self.text}'
 
 
 class Choice(models.Model):

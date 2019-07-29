@@ -9,3 +9,6 @@ class UserAssessment(models.Model):
     assessment = models.ForeignKey(Assessment, related_name="users",
                                    on_delete=models.CASCADE, null=False,)
     score = models.IntegerField(default=0, null=True,)
+
+    def __str__(self):
+        return f'{self.user.username}: {self.assessment} Score {self.score}'
