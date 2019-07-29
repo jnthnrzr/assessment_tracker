@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Assessment, Choice, Question
+from .models import Assessment, Choice, Question, UserAssessment
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
@@ -17,4 +17,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 class ChoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Choice
+        fields = '__all__'
+
+
+class UserAssessmentSerializer(serializers.ModelSerializer):
+    """Serializer to handle UserAssessment"""
+    class Meta:
+        model = UserAssessment
         fields = '__all__'

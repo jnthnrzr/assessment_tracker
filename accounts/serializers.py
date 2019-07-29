@@ -2,8 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from dashboard.models import Assessment
-from .models import UserAssessment
+from dashboard.models import Assessment, UserAssessment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -47,10 +46,3 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
-
-
-class UserAssessmentSerializer(serializers.ModelSerializer):
-    """Serializer to handle UserAssessment"""
-    class Meta:
-        model = UserAssessment
-        fields = '__all__'
