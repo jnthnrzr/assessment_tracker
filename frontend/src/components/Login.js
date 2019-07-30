@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 
 class Login extends Component {
   state = {
-    username: '',
+    email: '',
     password: ''
   };
 
   static defaultProps = {
-    isAuthenticated: null,
+    isAuthenticated: false,
   };
 
   static propTypes = {
@@ -21,9 +21,9 @@ class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     const { loginUser } = this.props;
-    loginUser(username, password);
+    loginUser(email, password);
   };
 
   onChange = event => {
@@ -38,20 +38,20 @@ class Login extends Component {
       return <Redirect to="/assessments" />;
     }
 
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
       <div>
         <h1>Assessments</h1>
         <h2>Login</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username</label>
+            <label>Email</label>
             <input
               type="text"
               className="form-control"
-              name="username"
+              name="email"
               onChange={this.onChange}
-              value={username}
+              value={email}
             />
           </div>
           <div className="form-group">
