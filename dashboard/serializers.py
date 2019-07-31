@@ -14,7 +14,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['text', 'choices']
+        fields = ['id', 'text', 'choices']
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
@@ -22,7 +22,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Assessment
-        fields = ['title', 'questions']
+        fields = ['id', 'title', 'questions']
 
 
 class UserAssessmentSerializer(serializers.ModelSerializer):
