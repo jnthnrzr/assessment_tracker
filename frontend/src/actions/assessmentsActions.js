@@ -12,16 +12,18 @@ export const getAssessments = () => (dispatch, getState) => {
         payload: res.data,
       });
     })
-    .catch(err =>
-      console.log(err)
-    );
+    .catch(err => console.log(err));
 };
 
 // TAKE ASSESSMENT
-export const takeAssessment = id => dispatch => {
-  console.log(`assessment id: ${id}`);
-  dispatch({
-    type: TAKE_ASSESSMENT,
-    payload: id,
-  });
+export const takeAssessment = id => (dispatch, getState) => {
+  axios
+    .get(`/api/assessments/${id}/`, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: TAKE_ASSESSMENT,
+        payload: res.data,
+      });
+    })
+    .catch(err => console.log(err));
 };
