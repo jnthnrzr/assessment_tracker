@@ -7,7 +7,25 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
+  USER_LOADED,
+  USER_LOADING,
 } from './types';
+
+// CHECK TOKEN & LOAD USER
+export const loadUser = () => (dispatch, getState) => {
+  // User Loading
+  dispatch({ type: USER_LOADING });
+
+  axios
+  .get("/api/auth/user", tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data
+    });
+  })
+  .catch(err => console.log(err));
+};
 
 // LOGIN USER
 export const loginUser = (email, password) => dispatch => {
