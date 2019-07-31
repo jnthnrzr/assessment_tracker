@@ -1,11 +1,13 @@
 import {
   CLEAR_ASSESSMENTS,
   GET_ASSESSMENTS,
-  UPDATE_ASSESSMENT
+  TAKE_ASSESSMENT,
+  UPDATE_ASSESSMENT,
 } from '../actions/types';
 
 const initialState = {
   assessments: [],
+  currentAssessment: null,
 };
 
 const assessmentsReducer = (state = initialState, action) => {
@@ -19,6 +21,11 @@ const assessmentsReducer = (state = initialState, action) => {
       return {
         ...state,
         assessments: [],
+      };
+    case TAKE_ASSESSMENT:
+      return {
+        ...state,
+        currentAssessment: action.payload,
       };
     case UPDATE_ASSESSMENT:
       return state;
