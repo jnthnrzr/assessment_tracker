@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 from .models import Assessment, Choice, Question, UserAssessment
 
@@ -25,8 +26,26 @@ class AssessmentSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'questions']
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email']
+
+
 class UserAssessmentSerializer(serializers.ModelSerializer):
     """Serializer to handle UserAssessment"""
+    user = UserSerializer(many=False, read_only=True)
+    assessment = AssessmentSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = UserAssessment
+        fields = ['id', 'user', 'assessment', 'score']
+
+
+class BestScoreSerializer(serializers.ModelSerializer):
+    assessment = serializers.IntegerField(read_only=True)
+    user = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = UserAssessment
         fields = '__all__'
