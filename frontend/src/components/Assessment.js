@@ -8,6 +8,7 @@ import {
   loadQuestions,
   updateAssessment,
 } from "../actions/assessmentsActions";
+import { logoutUser } from "../actions/authActions";
 
 function Summary(props) {
   return (
@@ -65,14 +66,18 @@ class Assessment extends Component {
   }
 
   render() {
-    const { currentAssessment, questionIdx, finishAssessment } = this.props;
+    const {
+      currentAssessment,
+      logoutUser,
+      questionIdx,
+      questions,
+      finishAssessment } = this.props;
 
     if (!currentAssessment) {
       return <Redirect to="/assessments"/>;
     }
 
     const { title } = currentAssessment;
-    const { questions } = this.props;
     const question = questions[questionIdx];
 
     if (!question) {
@@ -112,6 +117,13 @@ class Assessment extends Component {
             </button>
           </div>
         </form>
+        <button
+          type="button"
+          onClick={logoutUser}
+          className="nav-link btn btn-danger btn-md text-light"
+        >
+          Logout
+        </button>
       </div>
     );
   }
@@ -130,6 +142,7 @@ const mapDispatchToProps = {
   checkAnswer,
   finishAssessment,
   loadQuestions,
+  logoutUser,
   incrementQuestion,
   updateAssessment,
 };
